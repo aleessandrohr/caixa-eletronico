@@ -30,7 +30,7 @@ def menu(tamcédula_100, tamcédula_50, tamcédula_20, tamcédula_10):
             print('SAQUE'.center(42))
             print('-' * 42)
             while True:
-                valor = int(input('Quanto deseja sacar? '))
+                valor = leiaint('Quanto deseja sacar? ')
                 if valor <= 3000:
                     break
                 print('Limite de R$3000 reais.')
@@ -39,12 +39,16 @@ def menu(tamcédula_100, tamcédula_50, tamcédula_20, tamcédula_10):
             print('Contando as notas.')
             sleep(0.5)
             total = valor
+            valorstr = str(valor)
+            valorlist = []
+            for v in valorstr:
+                valorlist.append(v)
             cédula = 100
             tamcédula_100_cont = 0
             tamcédula_50_cont = 0
             tamcédula_20_cont = 0
             tamcédula_10_cont = 0
-            if valor % 2 == 0:
+            if valorlist[len(valorstr)-1] == '0':
                 while True:
                     if cédula == 100:
                         if total >= 100:
@@ -105,12 +109,22 @@ def menu(tamcédula_100, tamcédula_50, tamcédula_20, tamcédula_10):
                 sleep(0.5)
 
 
+def leiaint(número):
+    while True:
+        try:
+            número = int(input(f'{número}'))
+        except:
+            print(f'\033[31mPor favor digite apenas número inteiro.\033[m')
+        else:
+            return número
+
+
 # Notas
 
-tamcédula_100 = 1
-tamcédula_50 = 1
-tamcédula_20 = 1
-tamcédula_10 = 1
+tamcédula_100 = 10
+tamcédula_50 = 20
+tamcédula_20 = 20
+tamcédula_10 = 50
 
 # Iniciar
 
